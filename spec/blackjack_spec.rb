@@ -70,7 +70,7 @@ describe "#initial_round" do
 
 end
 
-describe "#hit?" do
+describe "#hit" do
   before(:each) do
     def get_user_input
       "s"
@@ -80,23 +80,23 @@ describe "#hit?" do
   it "calls on #prompt_user then #get_user_input" do
     expect($stdout).to receive(:puts).with("Type 'h' to hit or 's' to stay")
     expect(self).to receive(:get_user_input).and_return("s")
-    hit?(7)
+    hit(7)
   end
 
   it "returns an integer which is the card total" do
     expect(self).to receive(:get_user_input).and_return("s")
-    expect(hit?(20)).to eq(20)
+    expect(hit(20)).to eq(20)
   end
 
   it "does not deal another card if user types 's'" do
     expect(self).to receive(:get_user_input).and_return("s")
-    expect(hit?(7)).to eq(7)
+    expect(hit(7)).to eq(7)
   end
 
   it "deals another card when user types 'h'" do
     expect(self).to receive(:get_user_input).and_return("h")
     expect(self).to receive(:deal_card).and_return(7)
-    expect(hit?(7)).to eq(14)
+    expect(hit(7)).to eq(14)
   end
 
 end
